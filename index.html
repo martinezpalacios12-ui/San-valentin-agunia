@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carta para Aga</title>
+<style>
+/* General */
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:linear-gradient(to bottom,#ffd6ec,#ff99cc);
+  text-align:center;
+  overflow-x:hidden;
+}
+
+/* Secciones */
+.seccion{display:none; margin-top:50px;}
+#password{display:block;}
+
+/* Botones */
+button{
+  padding:15px 30px;
+  margin:10px;
+  font-size:20px;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
+}
+.si{background:#ff3399;color:white;}
+.no{background:gray;}
+.entrar{background:#ff3399;color:white;}
+
+/* Sobre */
+.sobre{
+  width:50vw;
+  max-width:250px;
+  height:120px;
+  background:#ff66a3;
+  margin:50px auto;
+  position:relative;
+  cursor:pointer;
+  border-radius:10px;
+}
+.tapa{
+  width:0;
+  height:0;
+  border-left:125px solid transparent;
+  border-right:125px solid transparent;
+  border-bottom:60px solid #ff3380;
+  position:absolute;
+  top:0;
+}
+
+/* Carta */
+.carta {
+  display:none;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh;
+  margin: 20px auto;
+  background: #ffe6f0;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  overflow-y: auto;
+  text-align: left;
+  font-size:18px;
+}
+
+/* Texto largo responsive */
+@media (max-width: 500px) {
+  .carta {
+    font-size:16px;
+    padding:15px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Música -->
+<audio id="musica" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+</audio>
+
+<!-- CONTRASEÑA -->
+<div class="seccion" id="password">
+  <h2>🔐 Introduce la contraseña</h2>
+  <input type="password" id="clave" placeholder="Escribe aquí">
+  <br><br>
+  <button class="entrar" onclick="verificar()">Entrar 💖</button>
+</div>
+
+<!-- PREGUNTA -->
+<div class="seccion" id="pregunta">
+  <h2>¿Eres Agnieszka Sandra Michalik? 💌</h2>
+  <button class="si" onclick="mostrarSobre()">Sí 💖</button>
+  <button class="no" id="noBtn">No</button>
+</div>
+
+<!-- SOBRE -->
+<div class="seccion" id="sobreSeccion">
+  <div class="sobre" onclick="abrirSobre()" id="sobre">
+    <div class="tapa"></div>
+  </div>
+  <p>Haz clic en el sobre ✉️</p>
+</div>
+
+<!-- CARTA -->
+<div class="carta" id="carta">
+  <h2>Mi Amor 💕</h2>
+  <p id="texto"></p>
+  <p style="font-size:40px;">🌹</p>
+</div>
+
+<script>
+// Texto largo de la carta
+const textoCarta = `Para: mi bandida, mi agaporni, mi gatita michu michu y mi novia  
+
+Hola Aga, sé que quizás prefieras una carta escrita a mano, pero quiero escribírtela aquí porque sé que nunca se romperá. Hace un año que empezamos a hablar y el tiempo pasa muy rápido desde que llegaste a mi vida. Eso solo pasa cuando eres feliz y te diviertes, y eso es lo que hago contigo.  
+
+Ya sabes lo que significas para mí. No vengo a repetirte lo de siempre, pero eres la luz que se ve al final del túnel, Aga. Tú tienes potencial para hacer todo lo que te propongas, aunque ahora estés pasando un mal momento y no sepas cuándo va a acabar. Yo estaré para ti hasta cuando quieras.  
+
+Por eso, me alegra tener a alguien tan increíble en mi vida y poder llamarle "MI NOVIA". Parece un sueño, pero no lo es. Me gustaría estar contigo hasta el día que la muerte nos separe, pero eso nunca se sabe. Yo disfruto el momento y espero en serio que tú y yo podamos salir adelante juntos.  
+
+Gracias por amarme a pesar de que quizás no soy todo lo que buscas, aun así me eliges una y otra vez, así como yo te elijo a ti una y otra vez. El día 14 de febrero haremos 165 días de ser novios y me parece poco; siento que he estado perdiendo el tiempo antes de conocer a alguien como tú.  
+
+Sé que nuestra relación puede pasar por momentos duros, pero yo elegiré luchar por ti porque es contigo con quien realmente quiero estar. Espero que tú luches contra las adversidades conmigo. Sigamos creando nuestra historia; muchas cositas bonitas van a llegar a nuestra vida.  
+
+TE AMO ❤️  
+Att: Justin Timberlake (Mau) ;)`;
+
+// Función para verificar contraseña
+function verificar(){
+  const clave = document.getElementById('clave').value;
+  if(clave === '1925'){
+    document.getElementById('password').style.display = 'none';
+    document.getElementById('pregunta').style.display = 'block';
+    document.getElementById('musica').play();
+  } else {
+    alert('Contraseña incorrecta 💔');
+  }
+}
+
+// Mostrar sección del sobre
+function mostrarSobre(){
+  document.getElementById('pregunta').style.display = 'none';
+  document.getElementById('sobreSeccion').style.display = 'block';
+}
+
+// Abrir sobre y mostrar carta
+function abrirSobre(){
+  document.getElementById('sobreSeccion').style.display = 'none';
+  document.getElementById('carta').style.display = 'block';
+  document.getElementById('texto').innerText = textoCarta;
+}
+</script>
+
+</body>
+</html>
