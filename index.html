@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carta para Aga 💖</title>
+<style>
+/* General */
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:linear-gradient(to bottom,#ffd6ec,#ff99cc);
+  text-align:center;
+  overflow:hidden;
+}
+
+/* Secciones */
+.seccion{display:none; margin-top:100px;}
+#password{display:block;}
+
+/* Botones */
+button{
+  padding:15px 30px;
+  margin:10px;
+  font-size:20px;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
+}
+.si{background:#ff3399;color:white;}
+.no{background:gray;position:relative;}
+.entrar{background:#ff3399;color:white;}
+
+/* Sobre */
+.sobre{
+  width:50vw;
+  max-width:250px;
+  height:120px;
+  background:#ff66a3;
+  margin:50px auto;
+  position:relative;
+  cursor:pointer;
+  border-radius:10px;
+}
+.tapa{
+  width:0;
+  height:0;
+  border-left:100px solid transparent;
+  border-right:100px solid transparent;
+  border-bottom:60px solid #ff3399;
+  position:absolute;
+  top:-60px;
+  left:0;
+  transition:1s;
+}
+.abierto .tapa{transform:rotateX(180deg);}
+
+/* Carta */
+.carta{
+  display:none;
+  background:#fff0f7;
+  padding:20px;
+  margin:20px auto;
+  border-radius:20px;
+  box-shadow:0 0 20px pink;
+  max-width: 90%;
+  min-height:200px;
+  text-align:left;
+  overflow-y:auto;
+  word-wrap: break-word;
+}
+
+/* Corazones */
+.corazon{
+  position:fixed;
+  bottom:-10px;
+  animation:flotar 5s linear infinite;
+}
+@keyframes flotar{
+0%{transform:translateY(0);}
+100%{transform:translateY(-100vh);}
+}
+
+/* Input */
+input[type=password]{
+  padding:10px;
+  font-size:16px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  width:60%;
+  max-width:300px;
+}
+</style>
+</head>
+<body>
+
+<!-- Música -->
+<audio id="musica" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+</audio>
+
+<!-- CONTRASEÑA -->
+<div class="seccion" id="password">
+  <h2>🔐 Introduce la contraseña</h2>
+  <input type="password" id="clave" placeholder="Escribe aquí">
+  <br><br>
+  <button class="entrar" onclick="verificar()">Entrar 💖</button>
+</div>
+
+<!-- PREGUNTA -->
+<div class="seccion" id="pregunta">
+  <h2>¿Eres Agnieszka Sandra Michalik? 💌</h2>
+  <button class="si" onclick="mostrarSobre()">Sí 💖</button>
+  <button class="no" id="noBtn">No</button>
+</div>
+
+<!-- SOBRE -->
+<div class="seccion" id="sobreSeccion">
+  <div class="sobre" onclick="abrirSobre()" id="sobre">
+    <div class="tapa"></div>
+  </div>
+  <p>Haz clic en el sobre ✉️</p>
+</div>
+
+<!-- CARTA -->
+<div class="carta" id="carta">
+  <h2>Mi Amor 💕</h2>
+  <p id="texto"></p>
+  <p style="font-size:40px;">🌹</p>
+</div>
+
+<script>
+// Contraseña
+function verificar(){
+  let clave = document.getElementById("clave").value;
+  if(clave === "1925"){
+    document.getElementById("password").style.display = "none";
+    document.getElementById("pregunta").style.display = "block";
+  } else {
+    alert("Contraseña incorrecta 😜");
+  }
+}
+
+// Botón NO que se escapa
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", function () {
+  const x = Math.random() * window.innerWidth - 100;
+  const y = Math.random() * window.innerHeight - 50;
+  noBtn.style.position = "absolute";
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+});
+
+// Mostrar sobre
+function mostrarSobre(){
+  document.getElementById("pregunta").style.display = "none";
+  document.getElementById("sobreSeccion").style.display = "block";
+}
+
+// Abrir sobre y mostrar carta
+function abrirSobre(){
+  document.getElementById("sobre").classList.add("abierto");
+  setTimeout(() => {
+    document.getElementById("sobreSeccion").style.display = "none";
+    document.getElementById("carta").style.display = "block";
+    document.getElementById("musica").play();
+    escribirTexto();
+    generarCorazones();
+  },1000);
+}
+
+// Texto carta
+const mensaje = `Para: mi bandida, mi agapornis, mi gatita michu michu y mi novia 💖
+
+Hola, Aga. Sé que a lo mejor prefieres una carta escrita a mano, pero quiero escribírtela aquí porque sé que nunca se romperá.
+
+Hace un año que empezamos a hablar. El tiempo pasa muy rápido desde que tú llegaste a mi vida, y eso solo pasa cuando eres feliz y te diviertes. Y eso es lo que hago contigo.
+
+Ya sabes lo que significas para mí. No vengo a repetirte lo de siempre, pero eres la luz que se ve al final del túnel, Aga.
+
+Tú tienes potencial para hacer todo lo que te propongas, aunque ahora estés pasando un mal momento y no sepas cuándo va a acabar. Yo estaré para ti hasta cuando quieras. Y por eso que te he dicho, me alegra tener a alguien tan increíble en mi vida y poder llamarle “mi novia”. Parece un sueño, pero no lo es.
+
+Me gustaría estar contigo hasta el día que la muerte nos separe, pero eso nunca se sabe. Yo disfruto el momento y espero, en serio, que tú y yo podamos salir adelante juntos.
+
+Gracias por amarme, a pesar de que a lo mejor no soy todo lo que buscas. Aun así, me eliges una y otra vez, así como yo te elijo a ti una y otra vez.
+
+El día 14 de febrero haremos 165 días de ser novios, y me parece poco. Siento que he estado perdiendo el tiempo antes de conocer a alguien como tú en esta vida, jeje.
+
+Sé que nuestra relación puede pasar por momentos duros, pero yo elegiré luchar por ti, porque es contigo con quien realmente quiero estar. Y espero que tú luches contra las adversidades conmigo.
+
+Sigamos creando nuestra historia, que muchas cositas bonitas van a llegar a nuestra vida.
+
+TE AMO.
+
+Att: Justin Timberlake (Mau) 😉`;
+
+// Escribir texto letra por letra
+function escribirTexto(){
+  let i = 0;
+  let velocidad = 40;
+  function escribir(){
+    if(i < mensaje.length){
+      document.getElementById("texto").innerHTML += mensaje.charAt(i);
+      i++;
+      setTimeout(escribir, velocidad);
+    }
+  }
+  escribir();
+}
+
+// Corazones flotando
+function generarCorazones(){
+  setInterval(()=>{
+    const heart = document.createElement("div");
+    heart.classList.add("corazon");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random()*100+"vw";
+    heart.style.fontSize = Math.random()*20+20+"px";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),5000);
+  },300);
+}
+</script>
+
+</body>
+</html>
